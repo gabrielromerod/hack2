@@ -1,5 +1,6 @@
 package dbp.hackathon.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -16,7 +17,8 @@ public class Person {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "members")  // Pointing to the correct property name in Group class
+    @ManyToMany(mappedBy = "members")
+    @JsonIgnore
     private Set<Group> groups = new HashSet<>();
 
     // getters and setters

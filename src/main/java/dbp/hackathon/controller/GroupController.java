@@ -32,6 +32,6 @@ public class GroupController {
 
     @GetMapping("/persons/{id}")
     public ResponseEntity<List<Group>> getGroupsByPersonId(@PathVariable(value = "id") Long personId) {
-        return ResponseEntity.ok(groupRepository.findAllByPersonsId(personId));
+        return ResponseEntity.ok(groupRepository.findAllByMembers_Id(personId));
     }
 }
