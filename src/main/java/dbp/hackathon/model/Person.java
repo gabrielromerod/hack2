@@ -25,10 +25,10 @@ public class Person {
     public Person() {
     }
 
-    public Person(Long id, String name, Set<Group> courses) {
+    public Person(Long id, String name, Set<Group> groups) {
         this.id = id;
         this.name = name;
-        this.groups = courses;
+        this.groups = groups;
     }
 
     public Long getId() {
@@ -51,7 +51,7 @@ public class Person {
         return groups;
     }
 
-    public void setCourses(Set<Group> courses) {
-        this.groups = courses;
+    public void setCourses(Set<Group> groups) {
+        this.groups = groups;
     }
 }
