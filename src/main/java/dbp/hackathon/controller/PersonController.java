@@ -8,10 +8,12 @@ import dbp.hackathon.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean;
 import org.springframework.web.bind.annotation.*;
 
 // import donde esta el     person repository y group repository
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,10 +42,14 @@ public class PersonController{
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    // GET/PERSONS/GROUPS/X
-    // We have group as an entity, so we can use the group repository to get the group
+    // Los a los que pertenece la persona por su id
     @GetMapping("/groups/{id}")
-    public ResponseEntity<List<Person>> findByPersonsById(@PathVariable Long id){
-        personRepository.findGroupsById(id);
+    public ResponseEntity<List<Group>> groups(@PathVariable Long id){
+        Optional<Person> person = personRepository.findById(id);
+        if(person.isPresent()){
+            List<Group> groupsList = new ArrayList<>(person.get().getGroups());
+            return new ResponseEntity<>(groupsList, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 }

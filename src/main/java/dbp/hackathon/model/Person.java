@@ -21,6 +21,10 @@ public class Person {
 
     // getters and setters
 
+    // Get que devuelva todos los grupos a los que pertenece la persona
+    public Set<Group> getGroups() {
+        return groups;
+    }
 
     public Person() {
     }
