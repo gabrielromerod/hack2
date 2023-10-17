@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "groups")
 public class Group {
 
     @Column(name = "name")
@@ -22,15 +23,9 @@ public class Group {
             joinColumns = { @JoinColumn(name = "id_group") },
             inverseJoinColumns = { @JoinColumn(name = "id_person") }
     )
-    private Set<Person> courses = new HashSet<>();
+    private Set<Person> members = new HashSet<>();
 
     public Group() {
-    }
-
-    public Group(String name, Long id, Set<Person> courses) {
-        this.name = name;
-        this.id = id;
-        this.courses = courses;
     }
 
     public String getName() {
@@ -49,11 +44,18 @@ public class Group {
         this.id = id;
     }
 
-    public Set<Person> getCourses() {
-        return courses;
+    public Set<Person> getMembers() {
+        return members;
     }
 
-    public void setCourses(Set<Person> courses) {
-        this.courses = courses;
+    public void setMembers(Set<Person> members) {
+        this.members = members;
+    }
+
+
+    public Group(String name, Long id, Set<Person> members) {
+        this.name = name;
+        this.id = id;
+        this.members = members;
     }
 }

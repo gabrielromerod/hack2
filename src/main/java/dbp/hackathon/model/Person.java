@@ -16,8 +16,8 @@ public class Person {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "persons")
-    private Set<dbp.hackathon.model.Group> groups = new HashSet<>();
+    @ManyToMany(mappedBy = "members")  // Pointing to the correct property name in Group class
+    private Set<Group> groups = new HashSet<>();
 
     // getters and setters
 
